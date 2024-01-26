@@ -9,9 +9,5 @@
             <var>general</var>
         </resource-bundle>
         
-        <resource-bundle>
-            <base-name>image</base-name>
-            <var>image</var>
-        </resource-bundle>
     </application>
 </faces-config>

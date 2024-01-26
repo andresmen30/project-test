@@ -20,7 +20,7 @@ public class StartupBean {
 
     @PostConstruct
     public void inicializate() {
-        LoadTerraConfig.getInstance();
+        System.out.println("Shut up in progress");
     }
 
     @PreDestroy

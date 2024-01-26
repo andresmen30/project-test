@@ -7,7 +7,6 @@
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/dto/BlogsDto.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/entity/Readers.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/dto/LoginDto.java
-/Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/config/BundleConfig.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/conversor/LoginConversor.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/controller/BlogsReaderController.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/controller/LoginController.java
@@ -30,7 +29,6 @@
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/conversor/BlogsConversor.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/dto/ReadersDto.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/util/Validator.java
-/Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/config/LoadTerraConfig.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/util/JsfUtility.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/dao/IReadersDao.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/util/CombosController.java
@@ -40,6 +38,5 @@
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/util/TabViewController.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/facade/ReaderBlogsFacade.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/util/FacesContextBuilder.java
-/Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/config/LoadPropertiesConfig.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/util/TabViewControl.java
 /Users/andresmendez/NetBeansProjects/project-test/src/main/java/com/project/test/dao/BlogsDao.java
