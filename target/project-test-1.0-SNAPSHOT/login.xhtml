@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/templateLogin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+    <ui:define name="content">
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <br/>
+                <div class="fadeIn first">
+                    <p:graphicImage 
+                        name= "logo.jpeg"
+                        height="150" width="200"
+                        library="img"/>
+
+                </div>
+                <br/>
+                <h:form id="loginForm">
+                    <p:growl id="growl" 
+                             showDetail="true"
+                             />
+                    <div>
+                        <p:inputText value="#{loginController.loginDto.email}"
+                                     class="fadeIn first"
+                                     autocomplete="off"
+                                     id="login"
+                                     onkeyup="buttonLogin('login')"
+                                     placeholder="email">
+                        </p:inputText>
+                    </div>
+                    <div>
+                        <p:password value="#{loginController.loginDto.password}"
+                                    id="password"
+                                    maxlength="15"
+                                    onkeyup="buttonLogin('login')"
+                                    autocomplete="off"
+                                    class="fadeIn second"
+                                    placeholder="password"/>
+                    </div>
+                    <br/>
+                    <p:commandButton class="btn btn-primary btn-lg fadeIn third"
+                                     widgetVar="buttonLogin"
+                                     update="growl"
+                                     action="#{loginController.iniciarSesion()}"
+                                     value="Log In"/>
+                    <br/><br/>  
+                </h:form>
+
+            </div>
+        </div>
+    </ui:define> 
+
+</ui:composition>

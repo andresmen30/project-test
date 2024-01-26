@@ -1,0 +1,26 @@
+<pretty-config xmlns="http://ocpsoft.org/prettyfaces/3.3.3"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.org/prettyfaces/3.3.3
+      http://ocpsoft.org/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
+
+    <url-mapping id="login">
+        <pattern value="/login" />
+        <view-id value="/login.xhtml" />
+    </url-mapping>
+    
+   <url-mapping id="blogs">
+        <pattern value="/blogs" />
+        <view-id value="/pages/blogs/blogs.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="reader">
+        <pattern value="/reader" />
+        <view-id value="/pages/reader/reader.xhtml" />
+    </url-mapping>
+        
+    <url-mapping id="readerByBlogs">
+        <pattern value="/readerByBlogs" />
+        <view-id value="/pages/blogs_reader/readerByBlogs.xhtml" />
+    </url-mapping>
+    
+</pretty-config>

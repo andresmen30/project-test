@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+    <ui:define name="content">
+        <ul class="breadcrumb">
+            <li><h3>READER BY BLOGS</h3></li>
+        </ul>
+        <h:form id="formSolicitud">
+            <p:dialog widgetVar="dialogSolicitud"
+                      position="center"
+                      responsive="true"
+                      resizable="false"
+                      closeOnEscape="false"
+                      closable="false"
+                      modal="true" draggable="false" dynamic="true"
+                      showEffect="explode" hideEffect="explode">
+                <p:panelGrid id="panelSolicitud" columns="1" 
+                             styleClass="ui-panelgrid-blank ui-fluid">
+                    <h:panelGroup class="ui-g-6">
+                        <p:outputLabel for="reader">Reader</p:outputLabel>
+                        <p:selectOneMenu id="reader" value="#{blogsReaderController.readersDto}"
+                                         converter="omnifaces.SelectItemsConverter"
+                                         required="true" requiredMessage="Reader mandatory*">
+                            <p:ajax listener="#{blogsReaderController.loadBlogByReader()}" update="blog"/>
+                            <f:selectItem itemLabel="select reader" itemValue="#{null}"/>
+                            <f:selectItems value="#{blogsReaderController.readers}"
+                                           var="reader" itemValue="#{reader}" itemLabel="#{reader.name}"/>
+                        </p:selectOneMenu>
+                    </h:panelGroup>
+                    <h:panelGroup class="ui-g-6">
+                        <p:outputLabel for="blog">Blog</p:outputLabel>
+                        <p:selectOneMenu id="blog" value="#{blogsReaderController.blogsDto}"
+                                         converter="omnifaces.SelectItemsConverter"
+                                         required="true" requiredMessage="Blog mandatory*">
+                            <f:selectItem itemLabel="select blog" itemValue="#{null}"/>
+                            <f:selectItems value="#{blogsReaderController.blogs}"
+                                           var="blog" itemValue="#{blog}" itemLabel="#{blog.title}"/>
+                        </p:selectOneMenu>
+                    </h:panelGroup>
+                </p:panelGrid>
+                <h:panelGroup class="ui-g-12">
+                    <p:commandButton styleClass="btn btn-danger"
+                                     icon="fa fa-long-arrow-left"
+                                     action="#{blogsReaderController.cleanNew()}"
+                                     immediate="true"
+                                     oncomplete="PF('dialogSolicitud').hide()"
+                                     update=":formSolicitud, :formConsultaSolicitud"
+                                     value="Cancelar"/>
+                    <p:commandButton styleClass="btn btn-primary"
+                                     icon="fa fa-check"
+                                     actionListener="#{blogsReaderController.save()}"
+                                     update="formConsultaSolicitud, panelSolicitud, growl"
+                                     value="Guardar"/>
+                </h:panelGroup>
+            </p:dialog>
+        </h:form>
+
+        <h:form id="formConsultaSolicitud">
+            <p:outputPanel style="text-align: right">
+                <p:commandButton value="Create"
+                                 action="#{blogsReaderController.cleanNew()}"
+                                 update=":formSolicitud:panelSolicitud"
+                                 oncomplete="PF('dialogSolicitud').show()"
+                                 icon="fa fa-plus-circle" 
+                                 styleClass="btn btn-success">
+                </p:commandButton>
+            </p:outputPanel>
+            <p:dataTable value="#{blogsReaderController.listDatatable}"
+                         id="dto"
+                         paginator="true"
+                         rowKey="#{dto.id}"
+                         rows="5"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+                         rowsPerPageTemplate="5,10,20"
+                         var="dto" >
+                <p:column headerText="Id" 
+                          >
+                    <h:outputText value="#{dto.id}"/>
+                </p:column>                
+                <p:column headerText="Reader"
+                          >
+                    <h:outputText value="#{dto.reader.name}"/>
+                </p:column>
+                 <p:column headerText="Blog"
+                          >
+                     <h:outputText value="#{dto.blog.title}"/>
+                </p:column>  
+                <p:column headerText="Acciones" exportable="false">
+                    <center>
+                        <p:commandButton icon="fa fa-edit"
+                                         action="#{blogsReaderController.preEditar(dto)}"
+                                         update=":formSolicitud:panelSolicitud"
+                                         styleClass="btn btn-warning"
+                                         oncomplete="PF('dialogSolicitud').show()"
+                                         title="Editar solicitud">
+                        </p:commandButton>
+                        <p:commandButton icon="fa fa-trash" 
+                                         update=":formConsultaSolicitud, growl"
+                                         styleClass="btn btn-danger"
+                                         action="#{blogsReaderController.delete(dto)}" 
+                                         title="Eliminar solicitud">
+                            <p:confirm header="Confirmation" 
+                                       message="¿Esta seguro de eliminar este registro?" 
+                                       icon="fal fa-exclamation-triangle" />
+                        </p:commandButton>
+                    </center>
+                </p:column>
+            </p:dataTable>
+            <p:confirmDialog global="true" showEffect="fade" 
+                             hideEffect="fade">
+                <p:commandButton value="Si" type="button"
+                                 styleClass="ui-confirmdialog-yes btn btn-primary" 
+                                 icon="fa fa-check" />
+                <p:commandButton value="No" type="button"
+                                 styleClass="ui-confirmdialog-no btn btn-danger" 
+                                 icon="fa fa-window-close" />
+            </p:confirmDialog>      
+        </h:form>
+    </ui:define>
+</ui:composition>

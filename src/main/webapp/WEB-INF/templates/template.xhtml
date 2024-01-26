@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>#{general['image']}</title>
+
+
+
+        <h:outputStylesheet library="css" name="general.css"/>    
+    </h:head>
+
+    <h:body>
+        <div class="wrapper">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>#{general['image']}</h3>
+                    <strong>#{general['name.app.abrev']}</strong>
+                </div>
+                <ul class="list-unstyled components">
+                    <hr class="line" />
+                    <h:panelGroup>
+                        <li>
+                            <a href="reader">
+                                <i><p:graphicImage 
+                                        height="40"
+                                        width="40"
+                                        name="reader.png" 
+                                        library="img"/></i>
+                                    #{general['menu.reader']}
+                            </a>
+                        </li>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <li>
+                            <a href="blogs">
+                                <i><p:graphicImage 
+                                        height="40"
+                                        width="40"
+                                        name="blog.png" 
+                                        library="img"/></i>
+                                    #{general['menu.blogs']}
+                            </a>
+                        </li>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <li>
+                            <a href="readerByBlogs">
+                                <i><p:graphicImage 
+                                        height="40"
+                                        width="40"
+                                        name="blog-writer.png" 
+                                        library="img"/></i>
+                                    #{general['menu.blogs.reader']}
+                            </a>
+                        </li>
+                    </h:panelGroup>
+                </ul>
+
+                <center>   
+                    <ul class="list-unstyled components">
+                        <hr class="line" />
+                        <li>
+                            <div>#{loginController.loginDto.name}</div>
+                        </li>
+                        <li>
+                            <div>#{loginController.loginDto.email}</div>
+                        </li>
+                    </ul>
+                    <h:form>
+                        <p:commandButton  styleClass="btn btn-danger"
+                                          action="#{loginController.cerrarSesion()}"
+                                          icon="fa fa-sign-out"
+                                          title="Log out">
+
+                        </p:commandButton>
+                    </h:form>
+                </center>
+
+            </nav>
+
+            <!-- Page Content  -->
+            <div id="content">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+
+                        <div onclick="changeSidebar()" class="btn" id="sidebarCollapse" >
+                            <i class="fa fa-bars fa-lg"></i>
+                        </div>
+
+                    </div>
+                </nav>
+
+                <div>
+                    <p:growl id="growl"
+                             rendered="#{!facesContext.validationFailed}"
+                             showDetail="true"
+                             />
+
+                    <ui:insert name="content"/>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bootstrap JS -->
+        <h:outputScript name="general.js" library="js"/>
+        <h:outputScript library="js" name="pdfmake.min.js" />
+        <h:outputScript library="js" name="vfs_fonts.js" />
+    </h:body>
+</ui:composition>
